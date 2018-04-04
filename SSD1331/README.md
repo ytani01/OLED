@@ -20,10 +20,13 @@
 
 ## 変更点
 
+* ピン番号変更
+
 ```python:*.py
 - SSD1331_PIN_CS = 23
 + SSD1331_PIN_CS = 8	# SPI0 CD0
 ```
+* python3版作成
 
 ## 参考
 
