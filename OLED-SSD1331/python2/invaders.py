@@ -227,7 +227,7 @@ if __name__ == '__main__':
             army.Render(True)
             plyr.Render(True)
             device.DrawStringBg(8, 0, "Score:" + str(army.Score()), SSD1331.COLOR_BLUE, SSD1331.COLOR_BLACK)
-            time.sleep(0.8)
+            time.sleep(0.4)
         if army.Size() == 0:
             device.DrawStringBg(27, 28, "Victory", SSD1331.COLOR_BLUE, SSD1331.COLOR_BLACK)
         else:
