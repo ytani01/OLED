@@ -4,7 +4,7 @@
 * [0.96インチ 128x64ドット 有機ELディスプレイ(OLED) I2C](http://akizukidenshi.com/catalog/g/gP-12031/)
 * [0.95インチ SPI OLEDディスプレイ 96x64ドット フルカラー SSD1331](https://www.amazon.co.jp/gp/product/B0711RKXB5/)
 
-#### 参考
+## 参考
 
 * [OLED を Raspberry Pi のコンソールにする](http://purose.net/fanout/index.php?OLED%20%E3%82%92%20Raspberry%20Pi%20%E3%81%AE%E3%82%B3%E3%83%B3%E3%82%BD%E3%83%BC%E3%83%AB%E3%81%AB%E3%81%99%E3%82%8B)
 

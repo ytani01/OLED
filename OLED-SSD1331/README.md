@@ -14,11 +14,11 @@
 * DC  --> 18, BCM 24
 * CS  --> 24, BCM 8, SPI0 CE0
 
-## 参考(オリジナル)
+## オリジナル
 
 * [(GitHubGift)TheRayTracer/SSD1331.py](https://gist.github.com/TheRayTracer/dd12c498e3ecb9b8b47f)
 
-## 変更点
+### 変更点
 
 ```python:*.py
 - SSD1331_PIN_CS = 23
