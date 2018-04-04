@@ -8,5 +8,5 @@
 
 ```python:*.py
 - SSD1331_PIN_CS = 23
-+ SSD1331_PIN_CS = 8  # CD0
++ SSD1331_PIN_CS = 8	# SPI0 CD0
 ```

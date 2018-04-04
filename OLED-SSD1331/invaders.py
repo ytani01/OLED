@@ -194,7 +194,7 @@ def AiLogicMove(army, plyr, rows):
                     return
     return
 
-SSD1331_PIN_CS  = 23
+SSD1331_PIN_CS  = 8     # SPI0 CE0
 SSD1331_PIN_DC  = 24
 SSD1331_PIN_RST = 25
 
