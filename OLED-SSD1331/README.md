@@ -6,13 +6,13 @@
 
 ## 接続
 
-* GND   --> 20, GND
-* VCC
-* SCL
-* SDA
-* RES
-* DC
-* CS    --> 24, BCM 8, SPI0 CE0
+* GND --> 20, GND
+* VCC --> 17, 3v3
+* SCL --> 23, BCM 11, SPI0 SCLK
+* SDA --> 19, BCM 10, SPI0 MOSI
+* RES --> 22, BCM 25
+* DC  --> 18, BCM 24
+* CS  --> 24, BCM 8, SPI0 CE0
 
 ## 参考(オリジナル)
 
