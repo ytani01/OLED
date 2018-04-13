@@ -2,7 +2,7 @@
 #
 
 HOME="/home/pi"
-BIDIR=${HOME}/bin
+BINDIR=${HOME}/bin
 
 CMD=${BINDIR}/oled-ip-img.sh
 

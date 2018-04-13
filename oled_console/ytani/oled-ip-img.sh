@@ -29,8 +29,9 @@ LABEL_STR="\\nIP: ${IPADDR}\\n"
 convert -font ${FONT} -pointsize ${POINTSIZE} \
 	label:"${LABEL_STR}\n" ${TEXT_PBM}
 
-convert -append ${HEAD_PBM} ${TEXT_PBM} ${OUT_PBM} 
+#convert -append ${HEAD_PBM} ${TEXT_PBM} ${OUT_PBM} 
+convert -append ${TEXT_PBM} ${OUT_PBM} 
 
-TERM=xterm setterm -cursor off > /dev/tty1
+#TERM=xterm setterm -cursor off > /dev/tty1
 
 exec sudo ${CMD_DISPIMG} ${OUT_PBM}
