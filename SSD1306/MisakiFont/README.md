@@ -1,4 +1,4 @@
-# OLED: SSD1306
+# OLED: 美咲フォント
 
 ## パーツ
 * [0.96インチ 128x64ドット 有機ELディスプレイ(OLED) I2C](http://akizukidenshi.com/catalog/g/gP-12031/)
