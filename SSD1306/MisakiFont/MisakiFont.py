@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import sys
 
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_SSD1306
@@ -13,6 +14,7 @@ FONT_PATH = '/home/pi/font/misakifont/misaki_gothic.ttf'
 
 class MisakiFont:
     def __init__(self):
+        self.flag = False
         self.str = ['','','','','','','','']
         self.char_width = 8
         self.char_height = 8
@@ -25,7 +27,11 @@ class MisakiFont:
         self.disp = Adafruit_SSD1306.SSD1306_128_64(rst=self.rst)
 
         # Initialize library.
-        self.disp.begin()
+        try:
+            self.disp.begin()
+        except Exception as e:
+            return
+
         # Clear display.
         self.disp.clear()
         self.disp.display()
@@ -46,6 +52,8 @@ class MisakiFont:
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
 
         self.font = ImageFont.truetype(FONT_PATH, 8, encoding='unic')
+
+        self.flag = True
 
     def clear(self):
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
@@ -73,6 +81,9 @@ class MisakiFont:
 
 if __name__ == '__main__':
     misakifont = MisakiFont()
+    if not misakifont.flag:
+        sys.exit(1)
+
     while True:
         misakifont.println('0123456789')
         misakifont.println('123456789')
