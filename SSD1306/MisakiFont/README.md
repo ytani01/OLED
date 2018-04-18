@@ -11,7 +11,7 @@
 
 * Install Libraries etc.
 
-'''bash
+```bash
 pip3 install -U Adafruit_GPIO.git
 pip3 install -U Adafruit_SSD1306.git
-'''
+```
