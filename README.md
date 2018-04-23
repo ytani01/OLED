@@ -13,3 +13,7 @@
 * [(GitHubGift)TheRayTracer/SSD1331.py](https://gist.github.com/TheRayTracer/dd12c498e3ecb9b8b47f)
 
 * [Luma.OLED: Display drivers](https://luma-oled.readthedocs.io/en/latest/)
+
+```bash
+python examples/foo.py -d ssd1331 -i spi -width 96
+```
