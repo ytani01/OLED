@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import sys
 
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_SSD1306
@@ -14,24 +13,26 @@ FONT_PATH = '/home/pi/font/misakifont/misaki_gothic.ttf'
 
 class MisakiFont:
     def __init__(self):
-        self.flag = False
         self.str = ['','','','','','','','']
         self.char_width = 8
         self.char_height = 8
         self.cur_row = 0
+        self.enable = True
 
         # Raspberry Pi pin configuration
         self.rst = 24
 
         #
         self.disp = Adafruit_SSD1306.SSD1306_128_64(rst=self.rst)
+        #self.disp = Adafruit_SSD1306.SSD1306_96_16(rst=self.rst)
 
         # Initialize library.
         try:
             self.disp.begin()
-        except Exception as e:
+        except:
+            self.enable =False
             return
-
+            
         # Clear display.
         self.disp.clear()
         self.disp.display()
@@ -53,20 +54,24 @@ class MisakiFont:
 
         self.font = ImageFont.truetype(FONT_PATH, 8, encoding='unic')
 
-        self.flag = True
-
     def clear(self):
+        if not self.enable:
+            return
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
         self.disp.image(self.image)
         #self.disp.clear()
         self.disp.display()
 
     def _draw1line(self, col, row, str):
+        if not self.enable:
+            return
         x = col * self.char_width
         y = row * self.char_height
         self.draw.text((x,y), str, font=self.font, fill=255)
 
     def println(self, str):
+        if not self.enable:
+            return
         self.str[self.cur_row] = str
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
         for r in range(self.rows):
@@ -81,9 +86,6 @@ class MisakiFont:
 
 if __name__ == '__main__':
     misakifont = MisakiFont()
-    if not misakifont.flag:
-        sys.exit(1)
-
     while True:
         misakifont.println('0123456789')
         misakifont.println('123456789')
