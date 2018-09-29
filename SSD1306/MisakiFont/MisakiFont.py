@@ -7,6 +7,8 @@ import Adafruit_SSD1306
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
+import textwrap
+import mojimoji
 
 # $ wget http://www.geocities.jp/littlimi/arc/misaki/misaki_ttf_2015-04-10.zip
 FONT_PATH = '/home/pi/font/misakifont/misaki_gothic.ttf'
@@ -69,7 +71,7 @@ class MisakiFont:
         y = row * self.char_height
         self.draw.text((x,y), str, font=self.font, fill=255)
 
-    def println(self, str):
+    def println1(self, str):
         if not self.enable:
             return
         self.str[self.cur_row] = str
@@ -83,6 +85,13 @@ class MisakiFont:
             self.cur_row = self.rows - 1
             self.str.pop(0)
             self.str.append('')
+
+    def println(self, str):
+        if not self.enable:
+            return
+        zen_str=mojimoji.han_to_zen(str)
+        for s in textwrap.fill(zen_str, self.cols).split('\n'):
+            self.println1(s)
 
 if __name__ == '__main__':
     misakifont = MisakiFont()
