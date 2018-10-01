@@ -13,7 +13,8 @@ from ipaddr import ipaddr
 FONT_PATH = '/home/pi/font/misakifont/misaki_gothic.ttf'
 
 class MisakiFont:
-    def __init__(self, fontsize=8, rst=24):
+    def __init__(self, zenkaku=True, fontsize=8, rst=24):
+        self.zenkaku_flag = zenkaku
         self.fontsize = fontsize
         self.rst = rst
 
@@ -90,12 +91,13 @@ class MisakiFont:
             self.str.pop(0)
             self.str.append('')
 
-    def println(self, str):
+    def println(self, s):
         if not self.enable:
             return
-        zen_str=mojimoji.han_to_zen(str)
-        for s in textwrap.fill(zen_str, self.cols).split('\n'):
-            self.println1(s)
+        if self.zenkaku_flag:
+            s=mojimoji.han_to_zen(s)
+        for s1 in textwrap.fill(s, self.cols).split('\n'):
+            self.println1(s1)
 
 if __name__ == '__main__':
     misakifont = MisakiFont()
@@ -109,13 +111,13 @@ if __name__ == '__main__':
         time.sleep(2)
         misakifont.clear()
         misakifont.println('あいうえお')
-        misakifont.println('あいうえお')
         misakifont.println('0123456789')
-        misakifont.println('ガギグゲゴ')
         misakifont.println('ｶﾞｷﾞｸﾞｹﾞｺﾞ')
+        misakifont.println('')
         misakifont.println('font ' + str(misakifont.fontsize))
         misakifont.println(str(misakifont.char_width) + 'x' +
                            str(misakifont.char_height) + 'pixels')
-        misakifont.println(str(misakifont.cols) + 'cols ' + str(misakifont.rows) + 'rrows')
+        misakifont.println(str(misakifont.cols) + ' cols ' +
+                           str(misakifont.rows) + ' rows')
         misakifont.println(ipaddr().ip_addr())
         break
