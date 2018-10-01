@@ -5,8 +5,9 @@ import Adafruit_SSD1306
 from PIL import Image, ImageDraw, ImageFont
 import textwrap
 import mojimoji
-
 import time
+
+from ipaddr import ipaddr
 
 # $ wget http://www.geocities.jp/littlimi/arc/misaki/misaki_ttf_2015-04-10.zip
 FONT_PATH = '/home/pi/font/misakifont/misaki_gothic.ttf'
@@ -105,16 +106,16 @@ if __name__ == '__main__':
         misakifont.println('123456789')
         misakifont.println('2あいうえおかきくけこさしすせそたちつてと')
         misakifont.println('3あいうえおABC')
-        time.sleep(3)
+        time.sleep(2)
         misakifont.clear()
-        misakifont.println('0 123456789')
-        misakifont.println('1 ガギグゲゴ')
-        misakifont.println('2 ｶﾞｷﾞｸﾞｹﾞｺﾞ')
-        misakifont.println('3 あいうえお')
-        misakifont.println('4 あいうえお')
-        misakifont.println('5 あいうえお')
-        misakifont.println('6 あいうえお')
-        misakifont.println('7 ' + str(misakifont.fontsize))
-        misakifont.println('8 ' + str(misakifont.char_width) + 'x' + str(misakifont.char_height))
-        misakifont.println('9 ' + str(misakifont.cols) + 'x' + str(misakifont.rows))
+        misakifont.println('あいうえお')
+        misakifont.println('あいうえお')
+        misakifont.println('0123456789')
+        misakifont.println('ガギグゲゴ')
+        misakifont.println('ｶﾞｷﾞｸﾞｹﾞｺﾞ')
+        misakifont.println('font ' + str(misakifont.fontsize))
+        misakifont.println(str(misakifont.char_width) + 'x' +
+                           str(misakifont.char_height) + 'pixels')
+        misakifont.println(str(misakifont.cols) + 'cols ' + str(misakifont.rows) + 'rrows')
+        misakifont.println(ipaddr().ip_addr())
         break
