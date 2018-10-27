@@ -3,8 +3,9 @@
 
 import Adafruit_SSD1306
 from PIL import Image, ImageDraw, ImageFont
-import textwrap
+#import textwrap
 import mojimoji
+import unicodedata
 import time
 
 from ipaddr import ipaddr
@@ -13,7 +14,7 @@ from ipaddr import ipaddr
 FONT_PATH = '/home/pi/font/misakifont/misaki_gothic.ttf'
 
 class MisakiFont:
-    def __init__(self, zenkaku=True, fontsize=8, rst=24):
+    def __init__(self, zenkaku=False, fontsize=8, rst=24):
         self.zenkaku_flag = zenkaku
         self.fontsize = fontsize
         self.rst = rst
@@ -30,7 +31,7 @@ class MisakiFont:
         try:
             self.disp.begin()
         except:
-            self.enable =False
+            self.enable = False
             return
         self.disp.clear()
         self.disp.display()
@@ -90,14 +91,42 @@ class MisakiFont:
             self.cur_row = self.rows - 1
             self.str.pop(0)
             self.str.append('')
+#        print("self.str=", end='')
+#        print(self.str)
 
     def println(self, s):
         if not self.enable:
             return
+        if len(s) == 0:
+            self.println1('')
+            return
         if self.zenkaku_flag:
-            s=mojimoji.han_to_zen(s)
-        for s1 in textwrap.fill(s, self.cols).split('\n'):
-            self.println1(s1)
+            s = mojimoji.han_to_zen(s)
+        line = ''
+        prev_len = 0
+        cur_len = 0
+        for ch in s:
+#            print(ch)
+            prev_len = cur_len
+            if unicodedata.east_asian_width(ch) in 'FWA':
+                cur_len += 1
+            else:
+                cur_len += 0.5
+#            print(cur_len)
+#            print(line)
+            if cur_len <= self.cols:
+                line += ch
+            else:
+                print(prev_len, end='')
+                print(' ' + line)
+                self.println1(line)
+                line = ch
+                cur_len -= prev_len
+        if cur_len > 0:
+            print(cur_len, end='')
+            print(' ' + line)
+            self.println1(line)
+                
 
 if __name__ == '__main__':
     misakifont = MisakiFont()
@@ -105,18 +134,13 @@ if __name__ == '__main__':
     print('char ' + str(misakifont.char_width) + 'x' + str(misakifont.char_height))
     print('disp ' + str(misakifont.cols) + 'x' + str(misakifont.rows))
     while True:
-        misakifont.println('123456789')
-        misakifont.println('2あいうえおかきくけこさしすせそたちつてと')
-        misakifont.println('3あいうえおABC')
-        time.sleep(2)
         misakifont.clear()
-        misakifont.println('あいうえお')
-        misakifont.println('0123456789')
-        misakifont.println('ｶﾞｷﾞｸﾞｹﾞｺﾞ')
+        misakifont.println('ABCあいうえお0123456789ガギグゲゴｶﾞｷﾞｸﾞｹﾞｺﾞABCあいうえお0123456789ガギグゲゴｶﾞｷﾞｸﾞｹﾞｺﾞ')
         misakifont.println('')
-        misakifont.println('font ' + str(misakifont.fontsize))
-        misakifont.println(str(misakifont.char_width) + 'x' +
-                           str(misakifont.char_height) + 'pixels')
+        misakifont.println('font:' +
+                           str(misakifont.fontsize) + ', ' +
+                           str(misakifont.char_width) + ' x ' +
+                           str(misakifont.char_height) + ' pixels')
         misakifont.println(str(misakifont.cols) + ' cols ' +
                            str(misakifont.rows) + ' rows')
         misakifont.println(ipaddr().ip_addr())
