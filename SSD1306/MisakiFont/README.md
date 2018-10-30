@@ -9,9 +9,17 @@
 
 ## How to use
 
-* Install Libraries etc.
+* Install
 
 ```bash
-pip3 install -U Adafruit_GPIO
-pip3 install -U Adafruit_SSD1306
+git clone https://github.com/ytani01/OLED.git
+cd ~/OLED/SSD1306/MisakiFont
+./install.sh
+crontab -e  # see crontab.sample
+```
+
+* run demo
+
+```bash
+MisakiFont.py
 ```
