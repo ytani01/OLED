@@ -1,1 +1,4 @@
-reboot		sleep 5; ${HOME}/bin/boot-MisakiFont.sh
+BINDIR=/home/pi/bin
+LOGDIR=/home/pi/tmp
+
+@reboot		sleep 10; ${BINDIR}/boot-MisakiFont.sh > ${LOGDIR}/boot.log 2>&1 &

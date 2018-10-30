@@ -70,6 +70,9 @@ class MisakiFont:
         for i in range(self.rows):
             self.str[i] = ''
 
+    def set_zenkaku_flag(self, value):
+        self.zenkaku_flag = value
+        
     def _draw1line(self, col, row, str):
         if not self.enable:
             return
@@ -133,15 +136,15 @@ if __name__ == '__main__':
     print('font ' + str(misakifont.fontsize))
     print('char ' + str(misakifont.char_width) + 'x' + str(misakifont.char_height))
     print('disp ' + str(misakifont.cols) + 'x' + str(misakifont.rows))
-    while True:
-        misakifont.clear()
-        misakifont.println('ABCあいうえお0123456789ガギグゲゴｶﾞｷﾞｸﾞｹﾞｺﾞABCあいうえお0123456789ガギグゲゴｶﾞｷﾞｸﾞｹﾞｺﾞ')
-        misakifont.println('')
-        misakifont.println('font:' +
-                           str(misakifont.fontsize) + ', ' +
-                           str(misakifont.char_width) + ' x ' +
-                           str(misakifont.char_height) + ' pixels')
-        misakifont.println(str(misakifont.cols) + ' cols ' +
-                           str(misakifont.rows) + ' rows')
-        misakifont.println(ipaddr().ip_addr())
-        break
+
+    misakifont.println('ABCあいうえお0123456789ガギグゲゴｶﾞｷﾞｸﾞｹﾞｺﾞABCあいうえお0123456789ガギグゲゴｶﾞｷﾞｸﾞｹﾞｺﾞ')
+    misakifont.println('font:' +
+                       str(misakifont.fontsize) + ', ' +
+                       str(misakifont.char_width) + ' x ' +
+                       str(misakifont.char_height) + ' pixels')
+    misakifont.println(str(misakifont.cols) + ' cols ' +
+                       str(misakifont.rows) + ' rows')
+    misakifont.set_zenkaku_flag(True)
+    misakifont.println(time.strftime('%Y/%m/%d(%a)'))
+    misakifont.println(time.strftime('%H:%M:%S'))
+    misakifont.println(ipaddr().ip_addr())

@@ -14,5 +14,6 @@ if [ ! -d ${LOGDIR} ]; then
     mkdir ${LOGDIR}
 fi
 
-exec ${MISAKI_FONT} > ${LOGFILE} 2>&1
-
+cd ${BINDIR}
+date > ${LOGFILE} 2>&1
+${MISAKI_FONT} >> ${LOGFILE} 2>&1
