@@ -71,7 +71,10 @@ class MisakiFont:
             self.str[i] = ''
 
     def set_zenkaku_flag(self, value):
-        self.zenkaku_flag = value
+        if value:
+            self.zenkaku_flag = True
+        else:
+            self.zenkaku_flag = False
         
     def _draw1line(self, col, row, str):
         if not self.enable:
