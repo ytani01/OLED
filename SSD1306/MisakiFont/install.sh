@@ -7,6 +7,8 @@ MISAKI_FONT=MisakiFont.py
 BINDIR=${HOME}/bin
 LOGDIR=${HOME}/tmp
 
+PKGS="i2c-tools"
+
 if [ ! -x ${MISAKI_FONT} ]; then
     echo "${MISAKI_FONT}: no such file"
     exit 1
@@ -19,7 +21,8 @@ if [ ! -d ${LOGDIR} ]; then
     mkdir ${LOGDIR}
 fi
 
-pip3 install -r requirements.txt
+sudo apt install -y ${PKGS}
+sudo pip3 install -r requirements.txt
 cp -r font ${HOME}
 cp ${MISAKI_FONT} ${BINDIR}
 cp ipaddr.py ${BINDIR}
