@@ -123,14 +123,14 @@ class MisakiFont:
             if cur_len <= self.cols:
                 line += ch
             else:
-                print(prev_len, end='')
-                print(' ' + line)
+                #print(prev_len, end='')
+                #print(' ' + line)
                 self.println1(line)
                 line = ch
                 cur_len -= prev_len
         if cur_len > 0:
-            print(cur_len, end='')
-            print(' ' + line)
+            #print(cur_len, end='')
+            #print(' ' + line)
             self.println1(line)
                 
 
