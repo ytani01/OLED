@@ -1,18 +1,20 @@
-argcomplete
 luma.core>=1.2.1
 luma.emulator>=1.0.2
+luma.oled>=2.3.1
 luma.lcd>=1.0.3
 luma.led_matrix>=1.0.7
-luma.oled>=2.3.1
+argcomplete
 
 [docs]
-sphinx >= 1.5.1
+sphinx>=1.5.1
 
 [qa]
-flake8
 rstcheck
+flake8
 
 [test]
-mock;python_version<"3.3"
-pytest-cov
 pytest>=3.1
+pytest-cov
+
+[test:python_version < "3.3"]
+mock

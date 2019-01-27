@@ -1,5 +1,6 @@
 README.rst
 setup.cfg
+setup.py
 luma.examples.egg-info/PKG-INFO
 luma.examples.egg-info/SOURCES.txt
 luma.examples.egg-info/dependency_links.txt
